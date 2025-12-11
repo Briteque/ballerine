@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OctWan – Racing Beyond Boundaries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="OctWan is building multi-sport hubs in emerging markets, connecting under-represented athletes to global motorsport and winter sports pathways."
+  />
+  <style>
+    :root {
+      --primary-blue: #1b7fd3;
+      --primary-green: #1abf7a;
+      --soft-blue: #f4fbff;
+      --soft-green: #f1fff8;
+      --dark: #0b2340;
+      --muted: #4b6075;
+      --card-bg: #ffffff;
+      --border-subtle: #d5e6f5;
+      --accent-pill: #e3f3ff;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 18px 40px rgba(9, 35, 76, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #e9f6ff, #f7fffd);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0 8px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--primary-blue);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--primary-blue);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 32px;
+      padding: 32px 20px;
+      margin: 12px 0 32px;
+      background: linear-gradient(
+        135deg,
+        rgba(27, 127, 211, 0.06),
+        rgba(26, 191, 122, 0.04)
+      );
+      border-radius: 32px;
+      border: 1px solid rgba(213, 230, 245, 0.8);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-pill);
+      color: var(--primary-blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 520px;
+    }
+
+    .hero-highlight {
+      font-size: 0.98rem;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px dashed var(--border-subtle);
+      margin-bottom: 22px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.08s ease, box-shadow 0.08s ease,
+        background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(
+        135deg,
+        var(--primary-blue),
+        var(--primary-green)
+      );
+      color: #ffffff;
+      box-shadow: 0 12px 25px rgba(17, 104, 188, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(17, 104, 188, 0.45);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: var(--border-subtle);
+      color: var(--muted);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary-blue);
+      background: #ffffff;
+    }
+
+    .hero-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta strong {
+      color: var(--dark);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 14px 14px 16px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .stat-pill {
+      padding: 8px 10px;
+      border-radius: 16px;
+      background: var(--soft-blue);
+    }
+
+    .stat-pill span {
+      display: block;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--primary-blue);
+    }
+
+    .hero-note {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: var(--soft-green);
+      font-size: 0.82rem;
+    }
+
+    .hero-contact {
+      font-size: 0.84rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    main {
+      margin-top: 10px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 650;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .section-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 18px;
+      box-shadow: 0 10px 24px rgba(9, 35, 76, 0.03);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pill-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #f0f6ff;
+      color: var(--primary-blue);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .highlight-metrics {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .metric-card {
+      flex: 1 1 140px;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 12px 14px;
+      box-shadow: 0 10px 24px rgba(9, 35, 76, 0.03);
+    }
+
+    .metric-card strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+      color: var(--primary-blue);
+    }
+
+    .metric-card span {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .metric-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .list {
+      margin-top: 8px;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin-bottom: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill-row span {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+    }
+
+    .footer-cta {
+      margin-top: 12px;
+      padding: 18px 16px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(
+        135deg,
+        rgba(27, 127, 211, 0.06),
+        rgba(26, 191, 122, 0.08)
+      );
+      border: 1px solid rgba(213, 230, 245, 0.8);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    footer {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .cards-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .split {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      .cards-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding: 22px 16px;
+      }
+
+      .footer-cta {
+        padding: 14px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">OctWan</div>
+      <nav>
+        <a href="#problem">Why Now</a>
+        <a href="#solution">Vision</a>
+        <a href="#sports">Focus Sports</a>
+        <a href="#market">Market</a>
+        <a href="#impact">Impact</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-tag">Racing beyond boundaries</div>
+        <h1 class="hero-title">
+          Rewriting the global sports diversity map.
+        </h1>
+        <p class="hero-subtitle">
+          From the asphalt of karting tracks to the pristine ice of skating
+          rinks, we dismantle barriers to entry and unlock world-class sport for
+          under-represented communities.
+        </p>
+        <div class="hero-highlight">
+          Talent is global. Opportunity is not. Millions of young athletes in
+          emerging markets possess the talent and hunger to compete globally,
+          yet remain invisible to the world stage.
+        </div>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Start a conversation</a>
+          <a href="#market" class="btn btn-secondary">Explore the opportunity</a>
+        </div>
+        <p class="hero-meta">
+          Founded by <strong>Ulric Quee</strong> • OctWan Ltd, Nigeria<br />
+          Incorporation #: 8453368
+        </p>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-stats">
+          <div class="stat-pill">
+            <span>Multi-sport hubs</span>
+            Democratise access to motorsport, trampoline parks, and ice sports
+            in emerging markets.
+          </div>
+          <div class="stat-pill">
+            <span>Global pathways</span>
+            Direct channels to international championships, federations and
+            professional teams.
+          </div>
+          <div class="stat-pill">
+            <span>Youth-first market</span>
+            200M+ population, 65% under 25 in Nigeria alone.
+          </div>
+          <div class="stat-pill">
+            <span>Diversity narrative</span>
+            A tangible platform for brands to activate ESG and inclusion
+            stories.
+          </div>
+        </div>
+        <div class="hero-note">
+          We are building the infrastructure of dreams – not as a sports club,
+          but as a talent pipeline connecting Africa to the world.
+        </div>
+        <div class="hero-contact" id="contact-top">
+          Contact: <a href="mailto:info@octwan.com">info@octwan.com</a><br />
+          Tel: +234 913 125 7551 &nbsp; | &nbsp; +1 812 391 4170
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <!-- Problem -->
+      <section id="problem">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Problem</div>
+            <h2 class="section-title">Talent is global. Opportunity is not.</h2>
+          </div>
+          <p class="section-lead">
+            Systemic barriers block young athletes in emerging markets from
+            ever reaching the starting grid – or the skating rink. We are
+            focused on three structural gaps.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <span class="pill-label">Infrastructure gap</span>
+            <h3>Technical facilities are missing</h3>
+            <p>
+              Professional tracks, trampoline parks, and ice rinks are virtually
+              non-existent in many African regions. Potential is stifled long
+              before it can be developed.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Financial barrier</span>
+            <h3>Capital-intensive sports, elitist outcomes</h3>
+            <p>
+              Motorsport and winter sports require significant capital. Without
+              structured support, these disciplines remain the preserve of a
+              narrow socioeconomic elite.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Representation void</span>
+            <h3>No role models, no roadmap</h3>
+            <p>
+              Young athletes cannot become what they cannot see. The absence of
+              relatable local champions creates a psychological ceiling on
+              ambition.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Vision & Solution -->
+      <section id="solution">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Solution</div>
+            <h2 class="section-title">Building the infrastructure of dreams.</h2>
+          </div>
+          <p class="section-lead">
+            OctWan is a multi-sport development platform that lowers the cost of
+            entry, structures athlete progression, and connects talent to global
+            pathways.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <span class="pill-label">Democratise access</span>
+            <h3>Multi-sport hubs</h3>
+            <p>
+              We build and manage hubs that combine karting, trampoline, and ice
+              sports – shared infrastructure that makes premium sports
+              accessible at scale.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Structured development</span>
+            <h3>From curiosity to podium</h3>
+            <p>
+              Professional coaching curriculums take athletes from grassroots
+              discovery through to high-performance programs, with clear
+              milestones and standards.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Global pathways</span>
+            <h3>Bridging to the world</h3>
+            <p>
+              Our hubs are plugged into international championships,
+              federations, and professional teams, turning local output into
+              global opportunities.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Business model & focus sports -->
+      <section id="sports">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Model</div>
+            <h2 class="section-title">A multi-sport engine for sustainable growth.</h2>
+          </div>
+          <p class="section-lead">
+            Grassroots accessibility paired with high-value professional
+            pathways creates diversified revenues and a scalable operating
+            model.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <span class="pill-label">Motorsport (karting)</span>
+            <h3>Gateway to global racing</h3>
+            <p>
+              Revenue from arrive-and-drive rentals, corporate leagues, and
+              academy tuition – anchored in a standardised, safe, and
+              professional karting ecosystem. The gateway to F1 and GT racing.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Winter sports</span>
+            <h3>Ice skating & curling clinics</h3>
+            <p>
+              We introduce the elegance and precision of winter sports to
+              tropical climates, leveraging novelty to drive high footfall and
+              participation.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Active lifestyle</span>
+            <h3>Trampoline parks & fitness hubs</h3>
+            <p>
+              High-volume recreational usage subsidises elite training
+              programs, creating a virtuous cycle between fun, fitness and
+              performance.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Motorsport in Nigeria & Ice sports frontier -->
+      <section>
+        <div class="split">
+          <div>
+            <div class="section-kicker">Motorsport</div>
+            <h2 class="section-title">Professionalising Nigeria’s grid.</h2>
+            <p class="section-lead">
+              Nigeria has a vibrant car culture and a population hungry for
+              adrenaline sports, but professional pathways have been fragmented
+              or non-existent. OctWan changes that.
+            </p>
+            <ul class="list">
+              <li>Standardised equipment and track safety.</li>
+              <li>Professional officiating and recognised championships.</li>
+              <li>
+                A feeder series linking local competition to national, regional,
+                and international tiers.
+              </li>
+            </ul>
+
+            <div class="highlight-metrics">
+              <div class="metric-card">
+                <strong>200M+</strong>
+                <span>Population</span>
+                <p>A massive and youthful addressable market.</p>
+              </div>
+              <div class="metric-card">
+                <strong>65%</strong>
+                <span>Under 25</span>
+                <p>
+                  A generation eager for new opportunities in non-traditional
+                  sports.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-kicker">Winter sports</div>
+            <h2 class="section-title">A new frontier on ice.</h2>
+            <p class="section-lead">
+              We are introducing ice skating and winter sports to a region
+              defined by heat, deliberately challenging stereotypes about who
+              belongs on the ice.
+            </p>
+            <div class="cards-3" style="grid-template-columns: 1fr;">
+              <article class="card">
+                <h3>Cultural impact</h3>
+                <p>
+                  Inspired by the legacy of teams like the Jamaican bobsledders,
+                  OctWan uses winter sports as a platform for representation,
+                  narrative change, and aspiration.
+                </p>
+              </article>
+              <article class="card">
+                <h3>Olympic dreams</h3>
+                <p>
+                  Through rigorous talent identification and specialised
+                  transfer training, we target future Winter Olympic
+                  representation for African athletes.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Market & edge -->
+      <section id="market">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Market</div>
+            <h2 class="section-title">A growth market with a diversity gap.</h2>
+          </div>
+          <p class="section-lead">
+            The global sports market is expanding, driven by digital content,
+            rising middle classes and demand for experiential entertainment.
+            Diversity and inclusion remain under-served in this growth.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Strategic edge</h3>
+          <ul class="list">
+            <li>
+              <strong>First-mover advantage:</strong> Building the premier hubs
+              for motorsport and ice skating in West Africa.
+            </li>
+            <li>
+              <strong>Multi-sport synergy:</strong> Shared infrastructure and
+              cross-pollinated audiences reduce overheads and boost utilisation.
+            </li>
+            <li>
+              <strong>Diversity narrative:</strong> A turnkey platform for
+              global brands to authentically support inclusion, representation
+              and ESG goals.
+            </li>
+          </ul>
+
+          <div class="pill-row" style="margin-top: 12px;">
+            <span>Sports infrastructure</span>
+            <span>Digital content & data</span>
+            <span>Emerging markets</span>
+            <span>ESG & inclusion</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Go-to-market & partnerships -->
+      <section>
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Execution</div>
+            <h2 class="section-title">Go-to-market and distribution.</h2>
+          </div>
+          <p class="section-lead">
+            Our strategy combines local community engagement with digital
+            storytelling and institutional partnerships.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <span class="pill-label">Community & grassroots</span>
+            <h3>Embedded in local ecosystems</h3>
+            <p>
+              School programs, demo days, and open houses drive discovery.
+              Scholarship pathways ensure talent – not wallet size – dictates
+              who progresses.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Digital & data</span>
+            <h3>Content-driven growth</h3>
+            <p>
+              Remote coaching, performance tracking, and video breakdowns turn
+              athlete journeys into digital content that inspires and scales
+              beyond the hub.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="pill-label">Strategic partnerships</span>
+            <h3>Land, accreditation & support</h3>
+            <p>
+              Collaboration with local government for land access and
+              international federations for accreditation, technical guidance,
+              and validation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Financial model & impact -->
+      <section id="impact">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Capital</div>
+            <h2 class="section-title">Financial model & seed round.</h2>
+          </div>
+          <p class="section-lead">
+            We are seeking partners to accelerate facility rollout and program
+            development, with value driven by diversified, recurring revenues.
+          </p>
+        </div>
+
+        <div class="split">
+          <div>
+            <div class="card">
+              <h3>Use of funds</h3>
+              <ul class="list">
+                <li>
+                  <strong>Facility construction:</strong> Track and ice rink
+                  installation, safety barriers and supporting infrastructure.
+                </li>
+                <li>
+                  <strong>Equipment fleet:</strong> High-performance karts,
+                  skates and maintenance tools.
+                </li>
+                <li>
+                  <strong>Talent acquisition:</strong> Technical directors,
+                  coaching staff and operational teams.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Impact & legacy</h3>
+              <p>
+                The next global superstar is out there, waiting for the
+                opportunity to compete. OctWan is the bridge between their
+                potential and their destiny.
+              </p>
+              <p style="margin-top: 8px;">
+                By joining us, you help redefine who belongs in elite motorsport
+                and winter sports, while building durable assets in high-growth
+                markets.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-cta" id="contact">
+          <div>
+            <div class="section-kicker">Partner with us</div>
+            <h3 style="font-size: 1.15rem; margin-bottom: 4px;">
+              Join us in reshaping global sport.
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--muted); max-width: 520px;">
+              Together, we can create a legacy of opportunity, excellence and
+              inclusion across motorsport and winter sports – starting in West
+              Africa.
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <a href="mailto:info@octwan.com" class="btn btn-primary">
+              Email the founding team
+            </a>
+            <div style="font-size: 0.83rem; color: var(--muted);">
+              Or call us on +234 913 125 7551 &nbsp; | &nbsp; +1 812 391 4170
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© OctWan Ltd. All rights reserved.</div>
+      <div>Incorporated in Nigeria • Company Registration #: 8453368</div>
+    </footer>
+  </div>
+</body>
+</html>
